@@ -1,6 +1,6 @@
 FROM debian:wheezy
 
-MAINTAINER NGINX Docker Maintainers "docker-maint@nginx.com"
+MAINTAINER Ozzy Johnson <oswald.johnson@gsa.gov>
 
 RUN apt-key adv --keyserver pgp.mit.edu --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62
 RUN echo "deb http://nginx.org/packages/mainline/debian/ wheezy nginx" >> /etc/apt/sources.list
@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y nginx=${NGINX_VERSION} && rm -rf /var/l
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
 
-VOLUME ["/var/cache/nginx"]
+VOLUME ["/var/cache/nginx", "/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html"]
 
 EXPOSE 80 443
 
